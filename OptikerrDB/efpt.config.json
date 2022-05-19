@@ -1,0 +1,75 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "optikerdbContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": "OptikerContext",
+   "OutputPath": "Models",
+   "ProjectRootNamespace": "OptikerrDB",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "public.geschaeft",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.kunden",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.liefert",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.betreut",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.kauft",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.mitarbeiter",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.lieferer",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.brillen",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.kunden_brillen",
+         "ObjectType": 3
+      },
+      {
+         "Name": "public.mitarbeiter_kunden",
+         "ObjectType": 3
+      }
+   ],
+   "UiHint": "OptikerDB",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
