@@ -5,12 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OptikerrDB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
-    
-    <Grid>
-        
-        
+        Title="BrillenDB Programm" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Grid Background="#679186">
+        <TabControl TabStripPlacement="Left">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Kunde.ico" Width="18" Height="18"/>
+                        <TextBlock Text="Kunde"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#2c698d">
+                    <!--d:SampleData ItemCount=5-->
+                    <DataGrid x:Name="kundenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,170,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,201,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,237,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="45,275,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,334,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,388,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,174,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,201,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,245,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,291,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="131,342,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="130,383,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+
+                    <Button x:Name="KundenLoad" Content="Load" HorizontalAlignment="Left" Margin="650,157,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="603,214,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="603,271,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Brillen.ico" Width="18" Height="18"/>
+                        <TextBlock Text="Brillen"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#2c698d">
+                    <DataGrid x:Name="brillenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Mitarbeiter.ico" Width="14" Height="14"/>
+                        <TextBlock Text="Mitarbeiter"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#2c698d">
+                    <DataGrid x:Name="mitarbeiterDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Lieferant.ico" Width="14" Height="14"/>
+                        <TextBlock Text="Lieferer"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#2c698d">
+                    <DataGrid x:Name="liefererDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Shop.ico" Width="16" Height="16"/>
+                        <TextBlock Text="Geschäft"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#2c698d">
+                    <DataGrid x:Name="geschaeftDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
     </Grid>
-    
+
 </Window>

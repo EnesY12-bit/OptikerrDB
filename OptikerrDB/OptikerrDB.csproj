@@ -11,4 +11,15 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OptikerDBLibary\OptikerDBLibary.csproj" />
+    <ProjectReference Include="..\OptikerService\OptikerService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Icons\Kunde.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OptikerService.Models;
+using System.Text.Json;
 
 namespace OptikerService.Controllers
 {
@@ -15,7 +16,7 @@ namespace OptikerService.Controllers
     {
         private readonly optikerdbContext _context;
 
-        public brillensController(optikerdbContext context)
+        public brillensController()
         {
             _context = new optikerdbContext();
         }
@@ -30,6 +31,7 @@ namespace OptikerService.Controllers
           }
             return await _context.brillen.ToListAsync();
         }
+
 
         // GET: api/brillens/5
         [HttpGet("{id}")]

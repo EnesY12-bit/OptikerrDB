@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OptikerrDB.Models;
 
-namespace OptikerService.Models
+namespace OptikerrDB.OptikerContext
 {
     public partial class optikerdbContext : DbContext
     {
@@ -13,7 +14,8 @@ namespace OptikerService.Models
         {
         }
 
-        public optikerdbContext(DbContextOptions<optikerdbContext> options) : base(options)
+        public optikerdbContext(DbContextOptions<optikerdbContext> options)
+            : base(options)
         {
         }
 

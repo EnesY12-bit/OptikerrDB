@@ -15,7 +15,7 @@ namespace OptikerService.Controllers
     {
         private readonly optikerdbContext _context;
 
-        public kundensController(optikerdbContext context)
+        public kundensController()
         {
             _context = new optikerdbContext();
         }

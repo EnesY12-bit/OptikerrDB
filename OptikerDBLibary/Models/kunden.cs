@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OptikerService.Models
+namespace OptikerrDB.Models
 {
     public partial class kunden
     {
@@ -15,6 +15,6 @@ namespace OptikerService.Models
         public string adresse { get; set; }
         public decimal? kosten { get; set; }
         public decimal bestellungsnummer { get; set; }
-        public DateTime datum { get; set; } //DateOnly
+        public DateOnly datum { get; set; }
     }
 }
