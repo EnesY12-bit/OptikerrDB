@@ -24,20 +24,20 @@
                     <TextBlock HorizontalAlignment="Left" Margin="45,201,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="45,237,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
-                    <TextBlock HorizontalAlignment="Left" Margin="45,275,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,334,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,388,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,272,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,304,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,336,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Margin="144,174,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
                     <TextBox HorizontalAlignment="Left" Margin="144,201,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,245,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,291,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="131,342,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="130,383,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,271,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,302,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,334,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
 
-                    <Button x:Name="KundenLoad" Content="Load" HorizontalAlignment="Left" Margin="650,157,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="603,214,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="603,271,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="583,171,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="583,214,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="583,265,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem>
