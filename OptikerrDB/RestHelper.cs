@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Net;
 using System.Text;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OptikerrDB
         static string baseUrl = $"{baseUri.AbsoluteUri}";
 
         //GET Kunden
-        public static async Task<List<kunden>?> Getallkunden()
+        public static async Task<List<kunden>?> GetallkundenAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/kundens/");
             if (!response.IsSuccessStatusCode)
@@ -40,7 +41,7 @@ namespace OptikerrDB
         }
 
         //GET Brillen
-        public static async Task<List<brillen>?> Getallbrillen()
+        public static async Task<List<brillen>?> GetallbrillenAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/brillens/");
             if (!response.IsSuccessStatusCode)
@@ -55,7 +56,7 @@ namespace OptikerrDB
 
         //GET Mitarbeiter
 
-        public static async Task<List<mitarbeiter>?> Getallmitarbeiter()
+        public static async Task<List<mitarbeiter>?> GetallmitarbeiterAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/mitarbeiters/");
             if (!response.IsSuccessStatusCode)
@@ -69,7 +70,7 @@ namespace OptikerrDB
         }
 
         //Get Lieferer
-        public static async Task<List<lieferer>?> Getalllieferer()
+        public static async Task<List<lieferer>?> GetallliefererAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/lieferers/");
             if (!response.IsSuccessStatusCode)
@@ -83,7 +84,7 @@ namespace OptikerrDB
         }
 
         //Get Geschäft
-        public static async Task<List<geschaeft>?> Getallgeschaeft()
+        public static async Task<List<geschaeft>?> GetallgeschaeftAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/geschaefts/");
             if (!response.IsSuccessStatusCode)
@@ -98,7 +99,7 @@ namespace OptikerrDB
 
 
         //Post Kunden
-        public static async Task<kunden> PostKunden(int KID , kunden kunden)
+        public static async Task<kunden> PostKundenAsync(int KID, kunden kunden)
         {
             string json = JsonSerializer.Serialize(kunden);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -114,7 +115,7 @@ namespace OptikerrDB
         }
 
         //Post Brillen
-        public static async Task<brillen> PostBrillen(int MID, brillen brillen)
+        public static async Task<brillen> PostBrillensAsync(int MID, brillen brillen)
         {
             string json = JsonSerializer.Serialize(brillen);
             StringContent content = new StringContent(json, Encoding.UTF8 , "application/json");
@@ -128,6 +129,117 @@ namespace OptikerrDB
             return JsonSerializer.Deserialize<brillen>(await reqeust.Content.ReadAsStringAsync(), options);
         }
 
+        //Post Mitarbeiter
+        public static async Task<mitarbeiter> PostMitarbeiterAsync(int PID, mitarbeiter mitarbeiter)
+        {
+            string json = JsonSerializer.Serialize(mitarbeiter);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = await client.PostAsync($"{baseUri}/api/mitarbeiters/{PID}/mitarbeiters", content);
+            if (!request.IsSuccessStatusCode)
+            {
+                //thow new InvaildOperationExceptions();
+                return null;
+            }
+            return JsonSerializer.Deserialize<mitarbeiter>(await request.Content.ReadAsStringAsync(), options);
+        }
+
+        //Post Lieferer
+        public static async Task<lieferer> PostLiefererAsync(int LID, lieferer lieferer)
+        {
+            string json = JsonSerializer.Serialize(lieferer);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = await client.PostAsync($"{baseUri}/api/lieferers/{LID}/lieferers", content);
+            if (!request.IsSuccessStatusCode)
+            {
+                //thow new InvaildOperationExceptions();
+                return null;
+            }
+            return JsonSerializer.Deserialize<lieferer>(await request.Content.ReadAsStringAsync(), options);
+        }
+
+        //Post Geschäft
+        public static async Task<geschaeft> PostGeschaeftAsync(int GID, geschaeft geschaeft)
+        {
+            string json = JsonSerializer.Serialize(geschaeft);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = await client.PostAsync($"{baseUri}/api/geschaefts/{GID}/geschaefts", content);
+            if (!request.IsSuccessStatusCode)
+            {
+                //thow new InvaildOperationExceptions();
+                return null;
+            }
+            return JsonSerializer.Deserialize<geschaeft>(await request.Content.ReadAsStringAsync(), options);
+        }
+
+
+        //Delete Kunden
+        public static async Task<bool> DeleteKundenAsync(int dKID)
+        {
+            var request = await client.DeleteAsync($"{baseUri}/api/kundens/{dKID}");
+
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            return true;
+        }
+        //Delete Brillen
+        public static async Task<bool> DeleteBrillenAsync(int dMID)
+        {
+            var request = await client.DeleteAsync($"{baseUri}/api/brillen/{dMID}");
+
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            return true;
+        }
+        //Delete Mitarbeiter
+        public static async Task<bool> DeleteMitarbeiterAsync(int dPID)
+        {
+            var request = await client.DeleteAsync($"{baseUri}/api/mitarbeiters/{dPID}");
+
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            return true;
+        }
+        //Delete Lieferer
+        public static async Task<bool> DeleteLiefererAsync(int dLID)
+        {
+            var request = await client.DeleteAsync($"{baseUri}/api/lieferers/{dLID}");
+
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            return true;
+        }
+        //Delete Geschäft
+        public static async Task<bool> DeleteGeschaeftAsync(int dGID)
+        {
+            var request = await client.DeleteAsync($"{baseUri}/api/geschaefts/{dGID}");
+
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Patch Kunden
+
+        //Patch Brillen
+
+        //Patch Mitarbeiter
+
+        //Patch Lieferer
+
+        //Patch Geschäft
 
     }
 }

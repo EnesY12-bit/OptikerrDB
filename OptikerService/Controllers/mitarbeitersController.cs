@@ -99,6 +99,28 @@ namespace OptikerService.Controllers
             return NoContent();
         }
 
+        // PATCH api/mitarbeiters
+        [HttpPatch]
+        public async Task<ActionResult> Patchmitarbeiter(int id, [FromBody] mitarbeiter cmitarbeiter)
+        {
+            var mitarbeiter = await _context.mitarbeiter.FindAsync(id);
+            if (mitarbeiter == null)
+            {
+                NotFound();
+            }
+            mitarbeiter.personalid = cmitarbeiter.personalid;
+            mitarbeiter.anrede = cmitarbeiter.anrede;
+            mitarbeiter.name = cmitarbeiter.name;
+            mitarbeiter.adress = cmitarbeiter.adress;
+            mitarbeiter.sozialversicherung = cmitarbeiter.sozialversicherung;
+            mitarbeiter.gehalt = cmitarbeiter.gehalt;
+            mitarbeiter.taetigkeit = cmitarbeiter.taetigkeit;
+            mitarbeiter.geschaeftsid = cmitarbeiter.geschaeftsid;
+            mitarbeiter.kundenid = cmitarbeiter.kundenid;
+            // Was nicht, ob dass dazu gehört
+            mitarbeiter.geschaeftsid = cmitarbeiter.geschaeftsid;
+            return Ok();
+        }
         private bool mitarbeiterExists(int id)
         {
             return (_context.mitarbeiter?.Any(e => e.personalid == id)).GetValueOrDefault();

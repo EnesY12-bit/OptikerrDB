@@ -99,6 +99,25 @@ namespace OptikerService.Controllers
             return NoContent();
         }
 
+        //PATCH api/lieferers
+        [HttpPatch]
+        public async Task<ActionResult> Patchlieferer(int id, [FromBody]lieferer clieferer)
+        {
+            var lieferer = await _context.lieferer.FindAsync(id);
+            if (lieferer == null)
+            {
+                return NotFound();
+            }
+
+            lieferer.lieferid = clieferer.lieferid;
+            lieferer.name = clieferer.name;
+            lieferer.adresse = clieferer.adresse;
+            lieferer.email = clieferer.email;
+            lieferer.telefonnummer = clieferer.telefonnummer;
+
+            return Ok();
+        }
+
         private bool liefererExists(int id)
         {
             return (_context.lieferer?.Any(e => e.lieferid == id)).GetValueOrDefault();

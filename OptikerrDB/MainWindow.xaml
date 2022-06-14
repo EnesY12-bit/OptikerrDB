@@ -33,7 +33,7 @@
             <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
     </Window.Resources>
-    
+
     <Grid Background="#679186">
         <TabControl TabStripPlacement="Left">
             <TabItem>
@@ -83,7 +83,7 @@
                         <DatePicker x:Name="KundeDP" />
 
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
 
                         <Button x:Name="AddKunden" Content="ADD" VerticalAlignment="Top" Click="AddKunden_Click" />
@@ -91,6 +91,7 @@
                         <Button x:Name="UpdateKunde" Content="UPDATE" VerticalAlignment="Top" Click="UpdateKunde_Click" />
 
                     </StackPanel>
+
                 </Grid>
             </TabItem>
             <TabItem>
@@ -247,7 +248,7 @@
                         <Button x:Name="UpdateLiefer" Content="UPDATE" VerticalAlignment="Top" Click="UpdateLiefer_Click" />
 
                     </StackPanel>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem>
@@ -297,7 +298,7 @@
                         <Button x:Name="UpdateGeschäft" Content="UPDATE" VerticalAlignment="Top" Click="UpdateGeschäft_Click" />
 
                     </StackPanel>
-                    
+
                 </Grid>
             </TabItem>
 

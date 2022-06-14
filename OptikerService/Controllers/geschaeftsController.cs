@@ -98,6 +98,33 @@ namespace OptikerService.Controllers
             return NoContent();
         }
 
+        //PATCH api/geschaefts
+        [HttpPatch]
+        public async Task<ActionResult> Patchgeschaeft(int gid, int pid, [FromBody] geschaeft cgeschaeft)
+        {
+            var geschaeft = await _context.geschaeft.FindAsync(gid);
+            if (geschaeft == null)
+            {
+                return NotFound();
+            }
+            var gpersonal = await _context.geschaeft.FindAsync(pid);
+            if (gpersonal == null)
+            {
+                return NotFound();
+            }
+
+            geschaeft.geschaeftsid = cgeschaeft.geschaeftsid;
+            geschaeft.personalid = cgeschaeft.personalid;
+            geschaeft.name = cgeschaeft.name;
+            geschaeft.adresse = cgeschaeft.adresse;
+
+            //Weiß nicht, ob dass dazu gehört
+            geschaeft.personal = cgeschaeft.personal;
+
+            return Ok();
+
+        }
+
         private bool geschaeftExists(int id)
         {
             return (_context.geschaeft?.Any(e => e.geschaeftsid == id)).GetValueOrDefault();

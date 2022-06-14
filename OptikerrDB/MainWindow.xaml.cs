@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace OptikerrDB
         {
 
             //Loading the Data
-            var obkunden = await RestHelper.Getallkunden();
+            var obkunden = await RestHelper.GetallkundenAsync();
             foreach (var k in obkunden)
             {
                 OBkunden.Add(k);
@@ -62,7 +63,7 @@ namespace OptikerrDB
             //kundenDG.ItemsSource = await RestHelper.Getallkunden();
             kundenDG.SelectedIndex = 0;
 
-            var obbrillen = await RestHelper.Getallbrillen();
+            var obbrillen = await RestHelper.GetallbrillenAsync();
             foreach (var b in obbrillen)
             {
                 OBbrillen.Add(b);
@@ -70,7 +71,7 @@ namespace OptikerrDB
             //brillenDG.ItemsSource = await RestHelper.Getallbrillen();
             brillenDG.SelectedIndex = 0;
 
-            var obmitarbeiter = await RestHelper.Getallmitarbeiter();
+            var obmitarbeiter = await RestHelper.GetallmitarbeiterAsync();
             foreach (var m in obmitarbeiter)
             {
                 OBmitarbeiter.Add(m);
@@ -78,7 +79,7 @@ namespace OptikerrDB
             //mitarbeiterDG.ItemsSource = await RestHelper.Getallmitarbeiter();
             mitarbeiterDG.SelectedIndex = 0;
 
-            var oblieferer = await RestHelper.Getalllieferer();
+            var oblieferer = await RestHelper.GetallliefererAsync();
             foreach (var l in oblieferer)
             {
                 OBlieferer.Add(l);
@@ -86,7 +87,7 @@ namespace OptikerrDB
             //liefererDG.ItemsSource = await RestHelper.Getalllieferer();
             liefererDG.SelectedIndex = 0;
 
-            var obgeschaeft = await RestHelper.Getallgeschaeft();
+            var obgeschaeft = await RestHelper.GetallgeschaeftAsync();
             foreach (var g in obgeschaeft)
             {
                 OBgeschaeft.Add(g);
@@ -101,7 +102,7 @@ namespace OptikerrDB
             //KundenTB, AnredeTB, NameTB, EmailTB, TelefonnummerTB, AnredeTB, KostenTB, BestellungTB, DatumTB 
             var kundeAdd = new kunden(Convert.ToInt32(KIDTB.Text), AnredeTB.Text, NameTB.Text, EmailTB.Text, Convert.ToDecimal(TelTB.Text), AdressTB.Text, Convert.ToDecimal(KostenTB.Text), Convert.ToDecimal(BestellungTB.Text), KundeDP.DisplayDate);
 
-            var newKunde = await RestHelper.PostKunden(kundeAdd.kundenid, kundeAdd);
+            var newKunde = await RestHelper.PostKundenAsync(kundeAdd.kundenid, kundeAdd);
 
             if (newKunde != null)
             {
@@ -128,18 +129,23 @@ namespace OptikerrDB
 
         private async void AddBrillen_Click(object sender, RoutedEventArgs e)
         {
-            var brillenAdd = new brillen(Convert.ToInt32(MIDTB.Text),BNTB.Text,BATB.Text,Convert.ToDecimal(BPTB.Text),BGTB.Text,Convert.ToDecimal(BSTB.Text),Convert.ToDecimal(BSTUTB.Text));
+            brillen brillenAdd = new brillen(Convert.ToInt32(MIDTB.Text), BNTB.Text,
+             BATB.Text, Convert.ToDecimal(BPTB.Text),
+             BGTB.Text, Convert.ToDecimal(BSTB.Text),
+             Convert.ToDecimal(BSTUTB.Text));
 
-            var newBrille = await RestHelper.PostBrillen(brillenAdd.modellid, brillenAdd);
+
+            var newBrille = await RestHelper.PostBrillensAsync(brillenAdd.modellid, brillenAdd);
 
             if (newBrille != null)
             {
                 OBbrillen.Add(newBrille);
                 brillenDG.Items.Refresh();
             }
-
-            MessageBox.Show("Gesendet");
-           // brillenDG.Items.Refresh();
+            else
+            {
+                MessageBox.Show("Error");
+            }
 
         }
 

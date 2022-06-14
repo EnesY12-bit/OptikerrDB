@@ -97,15 +97,25 @@ namespace OptikerService.Controllers
             return NoContent();
         }
 
-        // Patch: api/kundens
+        // PATCH api/kundens
         [HttpPatch]
-        public async Task<ActionResult> Updatekunden(int id, [FromBody] kunden kunden)
+        public async Task<ActionResult> Patchkunden(int id, [FromBody] kunden ckunden)
         {
-            var k = await _context.kunden.FindAsync(id);
+            var kunden = await _context.kunden.FindAsync(id);
             if (_context.kunden == null)
             {
                 return NotFound();
             }
+            
+            kunden.kundenid = ckunden.kundenid;
+            kunden.anrede = ckunden.anrede;
+            kunden.name = ckunden.name;
+            kunden.email = ckunden.email;
+            kunden.telefonnummer = ckunden.telefonnummer;
+            kunden.anrede = ckunden.adresse;
+            kunden.kosten = ckunden.kosten;
+            kunden.bestellungsnummer = ckunden.bestellungsnummer;
+            kunden.datum = ckunden.datum;
 
             return Ok();
 

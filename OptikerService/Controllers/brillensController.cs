@@ -60,7 +60,10 @@ namespace OptikerService.Controllers
           {
               return Problem("Entity set 'optikerdbContext.brillen'  is null.");
           }
+
             _context.brillen.Add(brillen);
+
+            
             try
             {
                 await _context.SaveChangesAsync();
@@ -76,7 +79,7 @@ namespace OptikerService.Controllers
                     throw;
                 }
             }
-
+            
             return CreatedAtAction("Getbrillen", new { id = brillen.modellid }, brillen);
         }
 
@@ -98,6 +101,27 @@ namespace OptikerService.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        // PATCH api/brillens
+        [HttpPatch]
+        public async Task<ActionResult> Patchbrillen(int id, [FromBody] brillen cbrillen)
+        {
+            var brillen = await _context.brillen.FindAsync(id);
+            if (brillen == null)
+            {
+                return NotFound();
+            }
+
+            brillen.modellid = cbrillen.modellid;
+            brillen.name = cbrillen.name;
+            brillen.preis = cbrillen.preis;
+            brillen.art = cbrillen.art;
+            brillen.glasart = cbrillen.glasart;
+            brillen.stueck = cbrillen.stueck;
+            brillen.staerke = cbrillen.staerke;
+
+            return Ok();
         }
 
         private bool brillenExists(int id)
