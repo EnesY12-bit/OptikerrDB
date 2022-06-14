@@ -232,14 +232,75 @@ namespace OptikerrDB
         }
 
         //Patch Kunden
+        public static async Task<bool> PatchKundenAsync(int pKID, kunden pkunden)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(pkunden),Encoding.UTF8, "application/json");
+            var request = await client.PatchAsync($"{baseUri}/api/geschaefts/{pKID}", content);
 
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
         //Patch Brillen
+        public static async Task<bool> PatchBrillenAsync(int pMID, brillen pbrillen)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(pbrillen), Encoding.UTF8, "application/json");
+            var request = await client.PatchAsync($"{baseUri}/api/geschaefts/{pMID}", content);
+
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
 
         //Patch Mitarbeiter
+        public static async Task<bool> PatchMitarbeiterAsync(int pPID, mitarbeiter pmitarbeiter)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(pmitarbeiter), Encoding.UTF8, "application/json");
+            var request = await client.PatchAsync($"{baseUri}/api/geschaefts/{pPID}", content);
 
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
         //Patch Lieferer
+        public static async Task<bool> PatchLiefererAsync(int pLID, lieferer plieferer)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(plieferer), Encoding.UTF8, "application/json");
+            var request = await client.PatchAsync($"{baseUri}/api/geschaefts/{pLID}", content);
 
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
         //Patch Geschäft
+        public static async Task<bool> PatchGeschaeftAsync(int pGID, geschaeft pgeschaeft)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(pgeschaeft), Encoding.UTF8, "application/json");
+            var request = await client.PatchAsync($"{baseUri}/api/geschaefts/{pGID}", content);
 
+            if (!request.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
     }
 }

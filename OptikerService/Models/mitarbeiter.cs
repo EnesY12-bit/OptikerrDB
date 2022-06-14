@@ -11,6 +11,7 @@ namespace OptikerService.Models
             geschaeft = new HashSet<geschaeft>();
         }
 
+
         public int personalid { get; set; }
         public string anrede { get; set; }
         public string name { get; set; }
@@ -22,5 +23,19 @@ namespace OptikerService.Models
         public int? kundenid { get; set; }
 
         public virtual ICollection<geschaeft> geschaeft { get; set; }
+
+
+        public mitarbeiter(int personalid, string anrede, string name, string adress, decimal sozialversicherung, decimal gehalt, string taetigkeit, int geschaeftsid, int? kundenid)
+        {
+            this.personalid = personalid;
+            this.anrede = anrede;
+            this.name = name;
+            this.adress = adress;
+            this.sozialversicherung = sozialversicherung;
+            this.gehalt = gehalt;
+            this.taetigkeit = taetigkeit;
+            this.geschaeftsid = geschaeftsid;
+            this.kundenid = kundenid;
+        }
     }
 }

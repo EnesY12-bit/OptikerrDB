@@ -115,9 +115,22 @@ namespace OptikerrDB
             kundenDG.Items.Refresh();
         }
 
-        private void DeleteKunde_Click(object sender, RoutedEventArgs e)
+        private async void DeleteKunde_Click(object sender, RoutedEventArgs e)
         {
+            kunden selectedKunde = kundenDG.SelectedItem as kunden;
+            if (selectedKunde == null)
+                return;
 
+            var deleteKunde = await RestHelper.DeleteKundenAsync(selectedKunde.kundenid);
+            if (deleteKunde)
+            {
+                OBkunden.Remove(selectedKunde);
+                kundenDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void UpdateKunde_Click(object sender, RoutedEventArgs e)
@@ -149,9 +162,22 @@ namespace OptikerrDB
 
         }
 
-        private void DeleteBrillen_Click(object sender, RoutedEventArgs e)
+        private async void DeleteBrillen_Click(object sender, RoutedEventArgs e)
         {
+            brillen selectedBrille = brillenDG.SelectedItem as brillen;
+            if (selectedBrille == null)
+                return;
 
+            var deleteBrille = await RestHelper.DeleteBrillenAsync(selectedBrille.modellid);
+            if (deleteBrille)
+            {
+                OBbrillen.Remove(selectedBrille);
+                brillenDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void UpdateBrillen_Click(object sender, RoutedEventArgs e)
@@ -160,14 +186,44 @@ namespace OptikerrDB
         }
 
         //Mitarbeiter
-        private void AddMitarbeiter_Click(object sender, RoutedEventArgs e)
-        {
 
+        private async void AddMitarbeiter_Click(object sender, RoutedEventArgs e)
+        {
+            mitarbeiter mitarbeiterAdd = new mitarbeiter(Convert.ToInt32(MPIDTB.Text),MATB.Text,MNTB.Text,
+                MAdresseTB.Text,Convert.ToDecimal(MSTB.Text),Convert.ToDecimal(MGTB.Text),MTTB.Text,
+                Convert.ToInt32(MGIDTB.Text), Convert.ToInt32(MKIDTB.Text));
+
+
+            var newmitarbeiter = await RestHelper.PostMitarbeiterAsync(mitarbeiterAdd.personalid, mitarbeiterAdd);
+
+            if (newmitarbeiter != null)
+            {
+                OBmitarbeiter.Add(newmitarbeiter);
+                mitarbeiterDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
-        private void DeleteMitarbeiter_Click(object sender, RoutedEventArgs e)
+        private async void DeleteMitarbeiter_Click(object sender, RoutedEventArgs e)
         {
+            mitarbeiter selectedMitarbeiter = mitarbeiterDG.SelectedItem as mitarbeiter;
+            if (selectedMitarbeiter == null)
+                return;
 
+            var deleteMitarbeiter = await RestHelper.DeleteMitarbeiterAsync(selectedMitarbeiter.personalid);
+
+            if (deleteMitarbeiter)
+            {
+                OBmitarbeiter.Remove(selectedMitarbeiter);
+                mitarbeiterDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void UpdateMitarbeiter_Click(object sender, RoutedEventArgs e)
@@ -181,9 +237,22 @@ namespace OptikerrDB
 
         }
 
-        private void DeleteLiefer_Click(object sender, RoutedEventArgs e)
+        private async void DeleteLiefer_Click(object sender, RoutedEventArgs e)
         {
+            lieferer selectedLieferer = liefererDG.SelectedItem as lieferer;
+            if (selectedLieferer == null)
+                return;
 
+            var deleteLieferer = await RestHelper.DeleteLiefererAsync(selectedLieferer.lieferid);
+            if (deleteLieferer)
+            {
+                OBlieferer.Remove(selectedLieferer);
+                liefererDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void UpdateLiefer_Click(object sender, RoutedEventArgs e)
@@ -197,9 +266,22 @@ namespace OptikerrDB
 
         }
 
-        private void DeleteGeschäft_Click(object sender, RoutedEventArgs e)
+        private async void DeleteGeschäft_Click(object sender, RoutedEventArgs e)
         {
+            geschaeft selectedGeschaeft = geschaeftDG.SelectedItem as geschaeft;
+            if (selectedGeschaeft == null)
+                return;
 
+            var deleteGescheaft = await RestHelper.DeleteGeschaeftAsync(selectedGeschaeft.geschaeftsid);
+            if (deleteGescheaft)
+            {
+                OBgeschaeft.Remove(selectedGeschaeft);
+                geschaeftDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void UpdateGeschäft_Click(object sender, RoutedEventArgs e)
