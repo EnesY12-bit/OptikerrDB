@@ -7,48 +7,141 @@
         mc:Ignorable="d"
         Title="BrillenDB Programm" Height="450" Width="800"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="1.5px" />
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="150px"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="150px"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Background="#679186">
         <TabControl TabStripPlacement="Left">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Kunde.ico" Width="18" Height="18"/>
-                        <TextBlock Text="Kunde"/>
+                        <TextBlock Text="Kunde" Foreground="Black"/>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid Background="#2c698d">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="218*"/>
+                        <ColumnDefinition Width="215*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="75*"/>
+                    </Grid.RowDefinitions>
                     <!--d:SampleData ItemCount=5-->
-                    <DataGrid x:Name="kundenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,170,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,201,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,237,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="kundenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="0" Grid.ColumnSpan="3" />
 
-                    <TextBlock HorizontalAlignment="Left" Margin="45,272,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,304,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="45,336,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,174,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,201,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,271,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,302,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,334,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
 
+                        <TextBlock Text="KundenID:"/>
+                        <TextBlock Text="Anrede:"/>
+                        <TextBlock Text="Name:"/>
+                        <TextBlock Text="Email:"/>
+                        <TextBlock Text="Telefonnummer:"/>
+                        <TextBlock Text="Adresse:"/>
+                        <TextBlock Text="Kosten:"/>
+                        <TextBlock Text="Bestellungsnummer:"/>
+                        <TextBlock Text="Datum:"/>
 
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="583,171,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="583,214,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="583,265,0,0" VerticalAlignment="Top"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+
+                        <TextBox x:Name="KIDTB"     Text="" />
+                        <TextBox x:Name="AnredeTB"  Text="" />
+                        <TextBox x:Name="NameTB"    Text="" />
+                        <TextBox x:Name="EmailTB"   Text="" />
+                        <TextBox x:Name="TelTB"     Text="" />
+                        <TextBox x:Name="AdressTB"  Text="" />
+                        <TextBox x:Name="KostenTB"  Text="" />
+                        <TextBox x:Name="BestellungTB" Text="" />
+                        <DatePicker x:Name="KundeDP" />
+
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+
+                        <Button x:Name="AddKunden" Content="ADD" VerticalAlignment="Top" Click="AddKunden_Click" />
+                        <Button x:Name="DeleteKunde" Content="DELTE" VerticalAlignment="Top" Click="DeleteKunde_Click" />
+                        <Button x:Name="UpdateKunde" Content="UPDATE" VerticalAlignment="Top" Click="UpdateKunde_Click" />
+
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Brillen.ico" Width="18" Height="18"/>
-                        <TextBlock Text="Brillen"/>
+                        <TextBlock Text="Brillen" Foreground="Black"/>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid Background="#2c698d">
-                    <DataGrid x:Name="brillenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="218*"/>
+                        <ColumnDefinition Width="215*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="75*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="brillenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+
+                        <TextBlock Text="ModellID:"/>
+                        <TextBlock Text="Name:"/>
+                        <TextBlock Text="Art:"/>
+                        <TextBlock Text="Preis:"/>
+                        <TextBlock Text="Glasart:"/>
+                        <TextBlock Text="Stärke:"/>
+                        <TextBlock Text="Stück:"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+
+                        <TextBox x:Name="MIDTB"     Text="" />
+                        <TextBox x:Name="BNTB"  Text="" />
+                        <TextBox x:Name="BATB"    Text="" />
+                        <TextBox x:Name="BPTB"   Text="" />
+                        <TextBox x:Name="BGTB"     Text="" />
+                        <TextBox x:Name="BSTB"  Text="" />
+                        <TextBox x:Name="BSTUTB"  Text="" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+
+                        <Button x:Name="AddBrillen" Content="ADD" VerticalAlignment="Top" Click="AddBrillen_Click" />
+                        <Button x:Name="DeleteBrillen" Content="DELTE" VerticalAlignment="Top" Click="DeleteBrillen_Click" />
+                        <Button x:Name="UpdateBrillen" Content="UPDATE" VerticalAlignment="Top" Click="UpdateBrillen_Click" />
+
+                    </StackPanel>
 
                 </Grid>
             </TabItem>
@@ -56,36 +149,155 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Mitarbeiter.ico" Width="14" Height="14"/>
-                        <TextBlock Text="Mitarbeiter"/>
+                        <TextBlock Text="Mitarbeiter" Foreground="Black"/>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid Background="#2c698d">
-                    <DataGrid x:Name="mitarbeiterDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="218*"/>
+                        <ColumnDefinition Width="215*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="75*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="mitarbeiterDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
 
+                        <TextBlock Text="PersonalID:"/>
+                        <TextBlock Text="Anrede:"/>
+                        <TextBlock Text="Name:"/>
+                        <TextBlock Text="Adresse:"/>
+                        <TextBlock Text="Sozialversicherung:"/>
+                        <TextBlock Text="Gehalt:"/>
+                        <TextBlock Text="Tätigkeit:"/>
+                        <TextBlock Text="GeschäftsID:"/>
+                        <TextBlock Text="KundenID:"/>
+                        <TextBlock Text="Geschäft:"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+
+                        <TextBox x:Name="MPIDTB"     Text="" />
+                        <TextBox x:Name="MATB"  Text="" />
+                        <TextBox x:Name="MNTB"    Text="" />
+                        <TextBox x:Name="MAdresseTB"   Text="" />
+                        <TextBox x:Name="MSTB"     Text="" />
+                        <TextBox x:Name="MGTB"  Text="" />
+                        <TextBox x:Name="MTTB"  Text="" />
+                        <TextBox x:Name="MGIDTB"  Text="" />
+                        <TextBox x:Name="MKIDTB"  Text="" />
+                        <TextBox x:Name="MGeschaeftTB"  Text="" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+
+                        <Button x:Name="AddMitarbeiter" Content="ADD" VerticalAlignment="Top" Click="AddMitarbeiter_Click" />
+                        <Button x:Name="DeleteMitarbeiter" Content="DELTE" VerticalAlignment="Top" Click="DeleteMitarbeiter_Click" />
+                        <Button x:Name="UpdateMitarbeiter" Content="UPDATE" VerticalAlignment="Top" Click="UpdateMitarbeiter_Click" />
+
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Lieferant.ico" Width="14" Height="14"/>
-                        <TextBlock Text="Lieferer"/>
+                        <TextBlock Text="Lieferer" Foreground="Black"/>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid Background="#2c698d">
-                    <DataGrid x:Name="liefererDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="218*"/>
+                        <ColumnDefinition Width="215*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="75*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="liefererDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
 
+                        <TextBlock Text="LieferID:"/>
+                        <TextBlock Text="Name:"/>
+                        <TextBlock Text="Adresse:"/>
+                        <TextBlock Text="Email:"/>
+                        <TextBlock Text="Telefonnummer:"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+
+                        <TextBox x:Name="LIDTB"     Text="" />
+                        <TextBox x:Name="LNTB"  Text="" />
+                        <TextBox x:Name="LATB"    Text="" />
+                        <TextBox x:Name="LETB"   Text="" />
+                        <TextBox x:Name="LTTB"     Text="" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+
+                        <Button x:Name="AddLiefer" Content="ADD" VerticalAlignment="Top" Click="AddLiefer_Click" />
+                        <Button x:Name="DeleteLiefer" Content="DELTE" VerticalAlignment="Top" Click="DeleteLiefer_Click" />
+                        <Button x:Name="UpdateLiefer" Content="UPDATE" VerticalAlignment="Top" Click="UpdateLiefer_Click" />
+
+                    </StackPanel>
+                    
                 </Grid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Shop.ico" Width="16" Height="16"/>
-                        <TextBlock Text="Geschäft"/>
+                        <TextBlock Text="Geschäft" Foreground="Black"/>
                     </StackPanel>
                 </TabItem.Header>
                 <Grid Background="#2c698d">
-                    <DataGrid x:Name="geschaeftDG" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,300"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="218*"/>
+                        <ColumnDefinition Width="215*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="75*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="geschaeftDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
 
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+
+                        <TextBlock Text="GeschäftID:"/>
+                        <TextBlock Text="Adresse:"/>
+                        <TextBlock Text="Name:"/>
+                        <TextBlock Text="PersonalID:"/>
+                        <TextBlock Text="Personal:"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+
+                        <TextBox x:Name="GIDTB"     Text="" />
+                        <TextBox x:Name="GATB"  Text="" />
+                        <TextBox x:Name="GNTB"    Text="" />
+                        <TextBox x:Name="GPIDTB"   Text="" />
+                        <TextBox x:Name="GPTB"     Text="" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+
+                        <Button x:Name="AddGeschäft" Content="ADD" VerticalAlignment="Top" Click="AddGeschäft_Click" />
+                        <Button x:Name="DeleteGeschäft" Content="DELTE" VerticalAlignment="Top" Click="DeleteGeschäft_Click" />
+                        <Button x:Name="UpdateGeschäft" Content="UPDATE" VerticalAlignment="Top" Click="UpdateGeschäft_Click" />
+
+                    </StackPanel>
+                    
                 </Grid>
             </TabItem>
 

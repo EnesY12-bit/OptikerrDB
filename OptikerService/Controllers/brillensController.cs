@@ -51,37 +51,6 @@ namespace OptikerService.Controllers
             return brillen;
         }
 
-        // PUT: api/brillens/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Putbrillen(int id, brillen brillen)
-        {
-            if (id != brillen.modellid)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(brillen).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!brillenExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/brillens
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

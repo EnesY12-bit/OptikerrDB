@@ -49,36 +49,6 @@ namespace OptikerService.Controllers
             return lieferer;
         }
 
-        // PUT: api/lieferers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Putlieferer(int id, lieferer lieferer)
-        {
-            if (id != lieferer.lieferid)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(lieferer).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!liefererExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/lieferers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

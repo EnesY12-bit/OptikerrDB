@@ -97,5 +97,37 @@ namespace OptikerrDB
         }
 
 
+        //Post Kunden
+        public static async Task<kunden> PostKunden(int KID , kunden kunden)
+        {
+            string json = JsonSerializer.Serialize(kunden);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = await client.PostAsync($"{baseUri}/api/kundens/{KID}/kundens", content);
+            if (!request.IsSuccessStatusCode)
+            {
+                //thow new InvalidOperationExceptions();
+                return null;
+            }
+
+            return JsonSerializer.Deserialize<kunden>(await request.Content.ReadAsStringAsync(), options);
+        }
+
+        //Post Brillen
+        public static async Task<brillen> PostBrillen(int MID, brillen brillen)
+        {
+            string json = JsonSerializer.Serialize(brillen);
+            StringContent content = new StringContent(json, Encoding.UTF8 , "application/json");
+
+            var reqeust = await client.PostAsync($"{baseUri}/api/brillens/{MID}/brillens", content);
+            if (!reqeust.IsSuccessStatusCode)
+            {
+                //thow new InvaildOpertaionExceptions();
+                return null;
+            }
+            return JsonSerializer.Deserialize<brillen>(await reqeust.Content.ReadAsStringAsync(), options);
+        }
+
+
     }
 }

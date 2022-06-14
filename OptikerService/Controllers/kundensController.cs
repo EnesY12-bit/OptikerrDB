@@ -49,41 +49,9 @@ namespace OptikerService.Controllers
             return kunden;
         }
 
-        // PUT: api/kundens/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Putkunden(int id, kunden kunden)
-        {
-            if (id != kunden.kundenid)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(kunden).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!kundenExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/kundens
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<kunden>> Postkunden(kunden kunden)
+        public async Task<ActionResult<kunden>> Postkunden(int KID, kunden kunden)
         {
           if (_context.kunden == null)
           {
@@ -106,7 +74,7 @@ namespace OptikerService.Controllers
                 }
             }
 
-            return CreatedAtAction("Getkunden", new { id = kunden.kundenid }, kunden);
+            return CreatedAtAction("Getkunden", new { id = KID }, kunden);
         }
 
         // DELETE: api/kundens/5
@@ -129,6 +97,19 @@ namespace OptikerService.Controllers
             return NoContent();
         }
 
+        // Patch: api/kundens
+        [HttpPatch]
+        public async Task<ActionResult> Updatekunden(int id, [FromBody] kunden kunden)
+        {
+            var k = await _context.kunden.FindAsync(id);
+            if (_context.kunden == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+
+        }
         private bool kundenExists(int id)
         {
             return (_context.kunden?.Any(e => e.kundenid == id)).GetValueOrDefault();

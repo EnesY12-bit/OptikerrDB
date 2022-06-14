@@ -7,12 +7,25 @@ namespace OptikerService.Models
 {
     public partial class brillen
     {
-        public int modellid { get; set; }
+       public int modellid { get; set; }
         public string name { get; set; }
         public string art { get; set; }
         public decimal preis { get; set; }
         public string glasart { get; set; }
         public decimal? staerke { get; set; }
         public decimal? stueck { get; set; }
+
+        public brillen(int modellid, string name, string art, decimal preis, string glasart, decimal? staerke, decimal? stueck)
+        {
+            this.modellid = modellid;
+            this.name = name;
+            this.art = art;
+            this.preis = preis;
+            this.glasart = glasart;
+            this.staerke = staerke;
+            this.stueck = stueck;
+        }
     }
+
+
 }

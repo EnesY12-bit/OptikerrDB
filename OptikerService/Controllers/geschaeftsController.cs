@@ -49,39 +49,8 @@ namespace OptikerService.Controllers
             return geschaeft;
         }
 
-        // PUT: api/geschaefts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Putgeschaeft(int id, geschaeft geschaeft)
-        {
-            if (id != geschaeft.geschaeftsid)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(geschaeft).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!geschaeftExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/geschaefts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<geschaeft>> Postgeschaeft(geschaeft geschaeft)
         {
