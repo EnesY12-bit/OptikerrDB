@@ -42,6 +42,23 @@
             <Setter Property="Background" Value="{x:Null}" />
             <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
+        <Style TargetType="DataGrid">
+            <Style.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Margin" Value="10, 5, 10, 5"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Margin" Value="10,0"/>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Window.Resources>
 
     <Grid Background="#679186">
@@ -60,13 +77,14 @@
                         <ColumnDefinition Width="274*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="75*"/>
+                        <RowDefinition Height="64*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="131*"/>
                     </Grid.RowDefinitions>
                     <!--d:SampleData ItemCount=5-->
-                    <DataGrid x:Name="kundenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="0" Grid.ColumnSpan="3" />
+                    <DataGrid x:Name="kundenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="0" Grid.ColumnSpan="3" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="False" />
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
 
                         <TextBlock Text="KundenID:"/>
                         <TextBlock Text="Anrede:"/>
@@ -80,16 +98,16 @@
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
 
-                        <TextBox x:Name="KIDTB"     Text="{Binding ElementName=kundenDG, Path=SelectedItem.kundenid}" />
-                        <TextBox x:Name="AnredeTB"  Text="{Binding ElementName=kundenDG, Path=SelectedItem.anrede}" />
-                        <TextBox x:Name="NameTB"    Text="{Binding ElementName=kundenDG, Path=SelectedItem.name}" />
-                        <TextBox x:Name="EmailTB"   Text="{Binding ElementName=kundenDG, Path=SelectedItem.email}" />
-                        <TextBox x:Name="TelTB"     Text="{Binding ElementName=kundenDG, Path=SelectedItem.telefonummer}" />
-                        <TextBox x:Name="AdressTB"  Text="{Binding ElementName=kundenDG, Path=SelectedItem.adresse}" />
-                        <TextBox x:Name="KostenTB"  Text="{Binding ElementName=kundenDG, Path=SelectedItem.kosten}" />
-                        <TextBox x:Name="BestellungTB" Text="{Binding ElementName=kundenDG, Path=SelectedItem.kostennummer}" />
+                        <TextBox x:Name="KIDTB"     Text="" />
+                        <TextBox x:Name="AnredeTB"  Text="" />
+                        <TextBox x:Name="NameTB"    Text="" />
+                        <TextBox x:Name="EmailTB"   Text=""/>
+                        <TextBox x:Name="TelTB"     Text="" />
+                        <TextBox x:Name="AdressTB"  Text="" />
+                        <TextBox x:Name="KostenTB"  Text="" />
+                        <TextBox x:Name="BestellungTB" Text="" />
                         <DatePicker x:Name="KundeDP"/>
 
                     </StackPanel>
@@ -102,6 +120,10 @@
 
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                        <TextBlock HorizontalAlignment="Left" Grid.Row="1" Text="Search:"/>
+                        <TextBox x:Name="SearchKundenTB" Grid.Row="1" Text="" KeyUp="SearchKundenTB_KeyUp"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabBrille">
@@ -119,10 +141,12 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32*"/>
-                        <RowDefinition Height="75*"/>
+
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="67*"/>
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="brillenDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
 
                         <TextBlock Text="ModellID:"/>
                         <TextBlock Text="Name:"/>
@@ -136,13 +160,13 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="MIDTB"     Text="{Binding ElementName=brillenDG, Path=SelectedItem.modellid}" />
-                        <TextBox x:Name="BNTB"  Text="{Binding ElementName=brillenDG, Path=SelectedItem.name}" />
-                        <TextBox x:Name="BATB"    Text="{Binding ElementName=brillenDG, Path=SelectedItem.art}" />
-                        <TextBox x:Name="BPTB"   Text="{Binding ElementName=brillenDG, Path=SelectedItem.preis}" />
-                        <TextBox x:Name="BGTB"     Text="{Binding ElementName=brillenDG, Path=SelectedItem.glasart}" />
-                        <TextBox x:Name="BSTB"  Text="{Binding ElementName=brillenDG, Path=SelectedItem.staerke}" />
-                        <TextBox x:Name="BSTUTB"  Text="{Binding ElementName=brillenDG, Path=SelectedItem.stueck}" />
+                        <TextBox x:Name="MIDTB"     Text="" />
+                        <TextBox x:Name="BNTB"  Text="" />
+                        <TextBox x:Name="BATB"    Text="" />
+                        <TextBox x:Name="BPTB"   Text="" />
+                        <TextBox x:Name="BGTB"     Text="" />
+                        <TextBox x:Name="BSTB"  Text="" />
+                        <TextBox x:Name="BSTUTB"  Text="" />
 
                     </StackPanel>
 
@@ -152,6 +176,11 @@
                         <Button x:Name="DeleteBrillen" Content="DELTE" VerticalAlignment="Top" Click="DeleteBrillen_Click" />
                         <Button x:Name="UpdateBrillen" Content="UPDATE" VerticalAlignment="Top" Click="UpdateBrillen_Click" />
 
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
+                        <TextBlock HorizontalAlignment="Left"  Grid.Row="1" Text="Search:"/>
+                        <TextBox x:Name="SearchBrillenTB" Grid.Row="1" Text="" HorizontalAlignment="Left" KeyUp="SearchBrillenTB_KeyUp"/>
                     </StackPanel>
 
                 </Grid>
@@ -170,11 +199,12 @@
                         <ColumnDefinition Width="274*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="75*"/>
+                        <RowDefinition Height="64*"/>
+                        <RowDefinition Height="19*"/>
+                        <RowDefinition Height="131*"/>
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="mitarbeiterDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
 
                         <TextBlock Text="PersonalID:"/>
                         <TextBlock Text="Anrede:"/>
@@ -191,16 +221,16 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="MPIDTB"     Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.personalid}" />
-                        <TextBox x:Name="MATB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.anrede}" />
-                        <TextBox x:Name="MNTB"    Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.name}" />
-                        <TextBox x:Name="MAdresseTB"   Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.adress}" />
-                        <TextBox x:Name="MSTB"     Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.sozialversicherung}" />
-                        <TextBox x:Name="MGTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.gehalt}" />
-                        <TextBox x:Name="MTTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.taetigkeit}" />
-                        <TextBox x:Name="MGIDTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.geschaeftsid}" />
-                        <TextBox x:Name="MKIDTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.kundenid}" />
-                        <TextBox x:Name="MGeschaeftTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.geschaeft}" />
+                        <TextBox x:Name="MPIDTB"     Text="" />
+                        <TextBox x:Name="MATB"  Text="" />
+                        <TextBox x:Name="MNTB"    Text="" />
+                        <TextBox x:Name="MAdresseTB"   Text="" />
+                        <TextBox x:Name="MSTB"     Text="" />
+                        <TextBox x:Name="MGTB"  Text="" />
+                        <TextBox x:Name="MTTB"  Text="" />
+                        <TextBox x:Name="MGIDTB"  Text="" />
+                        <TextBox x:Name="MKIDTB"  Text="" />
+                        <TextBox x:Name="MGeschaeftTB"  Text="" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
@@ -210,6 +240,11 @@
                         <Button x:Name="UpdateMitarbeiter" Content="UPDATE" VerticalAlignment="Top" Click="UpdateMitarbeiter_Click" />
 
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
+                        <TextBlock HorizontalAlignment="Left" Grid.Row="1" Text="Search:"/>
+                        <TextBox x:Name="SearchMitarebiterTB" Grid.Row="1" Text="" KeyUp="SearchMitarebiterTB_KeyUp"/>
+                    </StackPanel>
+
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabLieferer">
@@ -226,11 +261,13 @@
                         <ColumnDefinition Width="274*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="75*"/>
+                        <RowDefinition Height="103*"/>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="39*"/>
+                        <RowDefinition Height="261*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="liefererDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                    <DataGrid x:Name="liefererDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
 
                         <TextBlock Text="LieferID:"/>
                         <TextBlock Text="Name:"/>
@@ -241,17 +278,17 @@
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1">
 
-                        <TextBox x:Name="LIDTB"     Text="{Binding ElementName=liefererDG, Path=SelectedItem.lieferid}" />
-                        <TextBox x:Name="LNTB"  Text="{Binding ElementName=liefererDG, Path=SelectedItem.name}" />
-                        <TextBox x:Name="LATB"    Text="{Binding ElementName=liefererDG, Path=SelectedItem.adresse}" />
-                        <TextBox x:Name="LETB"   Text="{Binding ElementName=liefererDG, Path=SelectedItem.email}" />
-                        <TextBox x:Name="LTTB"     Text="{Binding ElementName=liefererDG, Path=SelectedItem.telefonnummer}" />
+                        <TextBox x:Name="LIDTB" Text="" />
+                        <TextBox x:Name="LNTB" Text="" />
+                        <TextBox x:Name="LATB" Text="" />
+                        <TextBox x:Name="LETB" Text="" />
+                        <TextBox x:Name="LTTB" Text="" />
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2">
 
                         <Button x:Name="AddLiefer" Content="ADD" VerticalAlignment="Top" Click="AddLiefer_Click" />
                         <Button x:Name="DeleteLiefer" Content="DELTE" VerticalAlignment="Top" Click="DeleteLiefer_Click" />
@@ -259,6 +296,10 @@
 
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2">
+                        <TextBlock HorizontalAlignment="Left" Text="Search:"/>
+                        <TextBox x:Name="SearchLieferTB" Text="" HorizontalAlignment="Left" KeyUp="SearchLieferTB_KeyUp" />
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabGeschäft">
@@ -275,12 +316,13 @@
                         <ColumnDefinition Width="274*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="75*"/>
+                        <RowDefinition Height="128*"/>
+                        <RowDefinition Height="35*"/>
+                        <RowDefinition Height="265*"/>
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="geschaeftDG" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
 
                         <TextBlock Text="GeschäftID:"/>
                         <TextBlock Text="Adresse:"/>
@@ -291,13 +333,13 @@
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
 
-                        <TextBox x:Name="GIDTB"     Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.geschaeftsid}" />
-                        <TextBox x:Name="GATB"  Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.adresse}" />
-                        <TextBox x:Name="GNTB"    Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.name}" />
-                        <TextBox x:Name="GPIDTB"   Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.personalid}" />
-                        <TextBox x:Name="GPTB"     Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.personal}" />
+                        <TextBox x:Name="GIDTB"     Text="" />
+                        <TextBox x:Name="GATB"  Text="" />
+                        <TextBox x:Name="GNTB"    Text="" />
+                        <TextBox x:Name="GPIDTB"   Text="" />
+                        <TextBox x:Name="GPTB"     Text="" />
 
                     </StackPanel>
 
@@ -307,6 +349,13 @@
                         <Button x:Name="DeleteGeschäft" Content="DELTE" VerticalAlignment="Top" Click="DeleteGeschäft_Click" />
                         <Button x:Name="UpdateGeschäft" Content="UPDATE" VerticalAlignment="Top" Click="UpdateGeschäft_Click" />
 
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1" >
+                        
+                        <TextBlock Grid.Row="1" Text="Search:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="SearchGeschäftTB" Grid.Row="1" Text="" KeyUp="SearchGeschäftTB_KeyUp"/>
+                        
                     </StackPanel>
 
                 </Grid>

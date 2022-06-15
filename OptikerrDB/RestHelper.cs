@@ -203,7 +203,7 @@ namespace OptikerrDB
         //Delete Mitarbeiter
         public static async Task<bool> DeleteMitarbeiterAsync(int dPID)
         {
-            var request = await client.DeleteAsync(baseUri + "/api/mitarbeiters/" + dPID);
+            var request = await client.DeleteAsync(baseUri + "/api/mitarbeiters/" + dPID + "/liefert/add");
 
             if (!request.IsSuccessStatusCode)
             {

@@ -435,21 +435,52 @@ namespace OptikerrDB
             }
         }
 
+        //Filtering through the DataGrids
+        private void SearchKundenTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchtermK = SearchKundenTB.Text.Trim().ToLower();
+            kundenDG.ItemsSource = OBkunden.Where(w => w.name.ToLower().Contains(searchtermK));
+        }
+
+        private void SearchBrillenTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchtermB = SearchBrillenTB.Text.Trim().ToLower();
+            brillenDG.ItemsSource = OBbrillen.Where(w => w.name.ToLower().Contains(searchtermB));
+        }
+
+        private void SearchMitarebiterTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchtermM = SearchMitarebiterTB.Text.Trim().ToLower();
+            mitarbeiterDG.ItemsSource = OBmitarbeiter.Where(w => w.name.ToLower().Contains(searchtermM));
+        }
+
+        private void SearchLieferTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchtermL = SearchLieferTB.Text.Trim().ToLower();
+            liefererDG.ItemsSource = OBlieferer.Where(w => w.name.ToLower().Contains(searchtermL));
+        }
+
+        private void SearchGeschäftTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchtermG = SearchGeschäftTB.Text.Trim().ToLower();
+            geschaeftDG.ItemsSource = OBgeschaeft.Where(w => w.name.ToLower().Contains(searchtermG));
+        }
 
         //Test
-       /* private void TabBrille_GotFocus(object sender, RoutedEventArgs e)
-        {
-            var window = new LoginWindow();
-            window.Owner = this;
-            if (window.ShowDialog() == true)
-            {
-                TabBrille.Focus();
-            }
-            else
-            {
-                TabKunde.Focus();
-            }
-        }
-       */
+        /* private void TabBrille_GotFocus(object sender, RoutedEventArgs e)
+         {
+             var window = new LoginWindow();
+             window.Owner = this;
+             if (window.ShowDialog() == true)
+             {
+                 TabBrille.Focus();
+             }
+             else
+             {
+                 TabKunde.Focus();
+             }
+         }
+
+        */
     }
 }
