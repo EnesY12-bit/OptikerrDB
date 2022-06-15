@@ -185,7 +185,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabMitarbeiter">
+            <TabItem x:Name="TabMitarbeiter" KeyUp="TabMitarbeiter_KeyUp">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Mitarbeiter.ico" Width="14" Height="14"/>

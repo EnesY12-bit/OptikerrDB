@@ -16,7 +16,7 @@ namespace OptikerService.Controllers
     {
         private readonly optikerdbContext _context;
 
-        public brillensController()
+        public brillensController(optikerdbContext _context)
         {
             _context = new optikerdbContext();
         }
@@ -52,7 +52,6 @@ namespace OptikerService.Controllers
         }
 
         // POST: api/brillens
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<brillen>> Postbrillen(brillen brillen)
         {

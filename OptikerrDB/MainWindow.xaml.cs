@@ -24,6 +24,9 @@ namespace OptikerrDB
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        //Private Comment: Normaler Weise sollte, alles funktioniern, wie es Programmiert wurde, doch leider bekomme, ich die ganze Zeit ein Fehler was ich nicht lösen (verstehe), wie man es macht oder kann.
+
         //OberserableCollections for Data
         ObservableCollection<kunden> OBkunden = new ObservableCollection<kunden>();
         ObservableCollection<brillen> OBbrillen = new ObservableCollection<brillen>();
@@ -111,7 +114,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Adding Kunde");
             }
         }
 
@@ -129,7 +132,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Deleting Kunde");
             }
         }
 
@@ -160,7 +163,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Updateing Kunde");
             }
 
 
@@ -185,7 +188,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Adding Brillen");
             }
 
         }
@@ -204,32 +207,22 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Deleting Brillen");
             }
         }
 
         private async void UpdateBrillen_Click(object sender, RoutedEventArgs e)
         {
-            brillen selectedBrillenU = brillenDG.SelectedItem as brillen;
-            
-            /*
-            MIDTB.Text = Convert.ToString(selectedBrillenU.modellid);
-            BNTB.Text = selectedBrillenU.name;
-            BATB.Text = selectedBrillenU.art;
-            BPTB.Text = Convert.ToString(selectedBrillenU.preis);
-            BGTB.Text = selectedBrillenU.glasart;
-            BSTB.Text = Convert.ToString(selectedBrillenU.staerke);
-            BSTUTB.Text = Convert.ToString(selectedBrillenU.stueck);
-            */
-            
+            brillen selectedBrillenU = brillenDG.SelectedItem as brillen; 
 
             if (selectedBrillenU == null)
             {
                 return;
             }
-           // brillen editbrillen = new brillen(selectedBrillenU.modellid, selectedBrillenU.name, selectedBrillenU.art, selectedBrillenU.preis, selectedBrillenU.glasart, selectedBrillenU.staerke, selectedBrillenU.stueck);
 
+            brillen editbrillen = new brillen(selectedBrillenU.modellid, selectedBrillenU.name, selectedBrillenU.art, selectedBrillenU.preis, selectedBrillenU.glasart, selectedBrillenU.staerke, selectedBrillenU.stueck);
 
+            /*
             brillen editbrillen = new()
             {
                 modellid = selectedBrillenU.modellid,
@@ -240,16 +233,7 @@ namespace OptikerrDB
                 staerke = selectedBrillenU.staerke,
                 stueck = selectedBrillenU.stueck
             };
-
-           /* selectedBrillenU.modellid = editbrillen.modellid;
-            selectedBrillenU.name = editbrillen.name;
-            selectedBrillenU.art = editbrillen.art;
-            selectedBrillenU.preis = editbrillen.preis;
-            selectedBrillenU.glasart = editbrillen.glasart;
-            selectedBrillenU.staerke = editbrillen.staerke;
-            selectedBrillenU.stueck = editbrillen.stueck;
-           */
-
+            */
             var patchbrillen = await RestHelper.PatchBrillenAsync(selectedBrillenU.modellid, editbrillen);
             if (patchbrillen)
             {
@@ -257,7 +241,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Updating Brille");
             }
         }
 
@@ -279,7 +263,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Adding Mitarbeiter");
             }
         }
 
@@ -298,7 +282,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Deleteing Mitarbeiter");
             }
         }
 
@@ -318,7 +302,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Updating Mitarbeiter");
             }
         }
 
@@ -337,7 +321,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Adding Mitarbeiter");
             }
         }
 
@@ -355,7 +339,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error deleting lieferer");
+                MessageBox.Show("Error at Deleting Lieferer");
             }
         }
 
@@ -375,7 +359,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Updating Lieferer");
             }
         }
 
@@ -393,7 +377,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Adding Geschäft");
             }
         }
 
@@ -411,7 +395,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Deleting Geschäft");
             }
         }
 
@@ -431,7 +415,7 @@ namespace OptikerrDB
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error at Updating Geschäft");
             }
         }
 
@@ -465,6 +449,29 @@ namespace OptikerrDB
             string searchtermG = SearchGeschäftTB.Text.Trim().ToLower();
             geschaeftDG.ItemsSource = OBgeschaeft.Where(w => w.name.ToLower().Contains(searchtermG));
         }
+
+        private void TabMitarbeiter_KeyUp(object sender, KeyEventArgs e)
+        {
+            var main = new MainWindow();
+            main.Close();
+
+            var window = new LoginWindow();
+            window.Owner = this;
+            if (window.ShowDialog() == true)
+            {
+                TabMitarbeiter.Focus();
+            }
+            else
+            {
+                TabKunde.Focus();
+            }
+        }
+
+        private void StackPanel_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         //Test
         /* private void TabBrille_GotFocus(object sender, RoutedEventArgs e)

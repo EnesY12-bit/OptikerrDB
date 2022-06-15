@@ -27,6 +27,7 @@ namespace OptikerrDB
 
         private void buttonA_Click(object sender, RoutedEventArgs e)
         {
+            //Statische Werte
             var stName = "Admin";
             var stPassword = "Admin";
 
@@ -37,13 +38,13 @@ namespace OptikerrDB
             }
             else if (TextBoxName.Text != stName && TextBoxPasswort.Text != stPassword)
             {
-                MessageBox.Show("Name oder Passwort Falsch");
+                MessageBox.Show("Username or Passwort is Incorrect");
                 DialogResult = false;
                 Close();
             }
             else
             {
-                MessageBox.Show("Enter Name and Passwort");
+                MessageBox.Show("No, Username or Passwort");
                 DialogResult=false;
                 Close();
             }
