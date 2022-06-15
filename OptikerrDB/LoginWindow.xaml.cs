@@ -22,6 +22,32 @@ namespace OptikerrDB
         public LoginWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void buttonA_Click(object sender, RoutedEventArgs e)
+        {
+            var stName = "Admin";
+            var stPassword = "Admin";
+
+            if (TextBoxName.Text == stName && TextBoxPasswort.Text == stPassword)
+            {
+                DialogResult = true;
+                Close();
+            }
+            else if (TextBoxName.Text != stName && TextBoxPasswort.Text != stPassword)
+            {
+                MessageBox.Show("Name oder Passwort Falsch");
+                DialogResult = false;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Enter Name and Passwort");
+                DialogResult=false;
+                Close();
+            }
+            
         }
     }
 }

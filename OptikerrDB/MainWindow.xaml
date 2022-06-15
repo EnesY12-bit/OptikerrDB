@@ -20,10 +20,20 @@
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Width" Value="150px"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
         </Style>
         <Style TargetType="DatePicker">
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Width" Value="150px"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5" />
@@ -36,7 +46,7 @@
 
     <Grid Background="#679186">
         <TabControl TabStripPlacement="Left">
-            <TabItem>
+            <TabItem x:Name="TabKunde">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Kunde.ico" Width="18" Height="18"/>
@@ -72,15 +82,15 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="KIDTB"     Text="" />
-                        <TextBox x:Name="AnredeTB"  Text="" />
-                        <TextBox x:Name="NameTB"    Text="" />
-                        <TextBox x:Name="EmailTB"   Text="" />
-                        <TextBox x:Name="TelTB"     Text="" />
-                        <TextBox x:Name="AdressTB"  Text="" />
-                        <TextBox x:Name="KostenTB"  Text="" />
-                        <TextBox x:Name="BestellungTB" Text="" />
-                        <DatePicker x:Name="KundeDP" />
+                        <TextBox x:Name="KIDTB"     Text="{Binding ElementName=kundenDG, Path=SelectedItem.kundenid}" />
+                        <TextBox x:Name="AnredeTB"  Text="{Binding ElementName=kundenDG, Path=SelectedItem.anrede}" />
+                        <TextBox x:Name="NameTB"    Text="{Binding ElementName=kundenDG, Path=SelectedItem.name}" />
+                        <TextBox x:Name="EmailTB"   Text="{Binding ElementName=kundenDG, Path=SelectedItem.email}" />
+                        <TextBox x:Name="TelTB"     Text="{Binding ElementName=kundenDG, Path=SelectedItem.telefonummer}" />
+                        <TextBox x:Name="AdressTB"  Text="{Binding ElementName=kundenDG, Path=SelectedItem.adresse}" />
+                        <TextBox x:Name="KostenTB"  Text="{Binding ElementName=kundenDG, Path=SelectedItem.kosten}" />
+                        <TextBox x:Name="BestellungTB" Text="{Binding ElementName=kundenDG, Path=SelectedItem.kostennummer}" />
+                        <DatePicker x:Name="KundeDP"/>
 
                     </StackPanel>
 
@@ -94,7 +104,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem x:Name="TabBrille">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Brillen.ico" Width="18" Height="18"/>
@@ -126,13 +136,13 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="MIDTB"     Text="" />
-                        <TextBox x:Name="BNTB"  Text="" />
-                        <TextBox x:Name="BATB"    Text="" />
-                        <TextBox x:Name="BPTB"   Text="" />
-                        <TextBox x:Name="BGTB"     Text="" />
-                        <TextBox x:Name="BSTB"  Text="" />
-                        <TextBox x:Name="BSTUTB"  Text="" />
+                        <TextBox x:Name="MIDTB"     Text="{Binding ElementName=brillenDG, Path=SelectedItem.modellid}" />
+                        <TextBox x:Name="BNTB"  Text="{Binding ElementName=brillenDG, Path=SelectedItem.name}" />
+                        <TextBox x:Name="BATB"    Text="{Binding ElementName=brillenDG, Path=SelectedItem.art}" />
+                        <TextBox x:Name="BPTB"   Text="{Binding ElementName=brillenDG, Path=SelectedItem.preis}" />
+                        <TextBox x:Name="BGTB"     Text="{Binding ElementName=brillenDG, Path=SelectedItem.glasart}" />
+                        <TextBox x:Name="BSTB"  Text="{Binding ElementName=brillenDG, Path=SelectedItem.staerke}" />
+                        <TextBox x:Name="BSTUTB"  Text="{Binding ElementName=brillenDG, Path=SelectedItem.stueck}" />
 
                     </StackPanel>
 
@@ -146,7 +156,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem x:Name="TabMitarbeiter">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Mitarbeiter.ico" Width="14" Height="14"/>
@@ -181,16 +191,16 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="MPIDTB"     Text="" />
-                        <TextBox x:Name="MATB"  Text="" />
-                        <TextBox x:Name="MNTB"    Text="" />
-                        <TextBox x:Name="MAdresseTB"   Text="" />
-                        <TextBox x:Name="MSTB"     Text="" />
-                        <TextBox x:Name="MGTB"  Text="" />
-                        <TextBox x:Name="MTTB"  Text="" />
-                        <TextBox x:Name="MGIDTB"  Text="" />
-                        <TextBox x:Name="MKIDTB"  Text="" />
-                        <TextBox x:Name="MGeschaeftTB"  Text="" />
+                        <TextBox x:Name="MPIDTB"     Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.personalid}" />
+                        <TextBox x:Name="MATB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.anrede}" />
+                        <TextBox x:Name="MNTB"    Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.name}" />
+                        <TextBox x:Name="MAdresseTB"   Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.adress}" />
+                        <TextBox x:Name="MSTB"     Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.sozialversicherung}" />
+                        <TextBox x:Name="MGTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.gehalt}" />
+                        <TextBox x:Name="MTTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.taetigkeit}" />
+                        <TextBox x:Name="MGIDTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.geschaeftsid}" />
+                        <TextBox x:Name="MKIDTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.kundenid}" />
+                        <TextBox x:Name="MGeschaeftTB"  Text="{Binding ElementName=mitarbeiterDG, Path=SelectedItem.geschaeft}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
@@ -202,7 +212,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem x:Name="TabLieferer">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Lieferant.ico" Width="14" Height="14"/>
@@ -233,11 +243,11 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="LIDTB"     Text="" />
-                        <TextBox x:Name="LNTB"  Text="" />
-                        <TextBox x:Name="LATB"    Text="" />
-                        <TextBox x:Name="LETB"   Text="" />
-                        <TextBox x:Name="LTTB"     Text="" />
+                        <TextBox x:Name="LIDTB"     Text="{Binding ElementName=liefererDG, Path=SelectedItem.lieferid}" />
+                        <TextBox x:Name="LNTB"  Text="{Binding ElementName=liefererDG, Path=SelectedItem.name}" />
+                        <TextBox x:Name="LATB"    Text="{Binding ElementName=liefererDG, Path=SelectedItem.adresse}" />
+                        <TextBox x:Name="LETB"   Text="{Binding ElementName=liefererDG, Path=SelectedItem.email}" />
+                        <TextBox x:Name="LTTB"     Text="{Binding ElementName=liefererDG, Path=SelectedItem.telefonnummer}" />
 
                     </StackPanel>
 
@@ -251,7 +261,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem>
+            <TabItem x:Name="TabGeschäft">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\enesi\source\repos\OptikerrDB\OptikerrDB\Icons\Shop.ico" Width="16" Height="16"/>
@@ -283,11 +293,11 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" >
 
-                        <TextBox x:Name="GIDTB"     Text="" />
-                        <TextBox x:Name="GATB"  Text="" />
-                        <TextBox x:Name="GNTB"    Text="" />
-                        <TextBox x:Name="GPIDTB"   Text="" />
-                        <TextBox x:Name="GPTB"     Text="" />
+                        <TextBox x:Name="GIDTB"     Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.geschaeftsid}" />
+                        <TextBox x:Name="GATB"  Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.adresse}" />
+                        <TextBox x:Name="GNTB"    Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.name}" />
+                        <TextBox x:Name="GPIDTB"   Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.personalid}" />
+                        <TextBox x:Name="GPTB"     Text="{Binding ElementName=geschaeftDG, Path=SelectedItem.personal}" />
 
                     </StackPanel>
 

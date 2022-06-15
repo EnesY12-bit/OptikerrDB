@@ -48,9 +48,9 @@
         <TextBlock Text="Name:" Grid.Row="2"/>
         <TextBlock Text="Passwort" Grid.Row="3"/>
 
-        <TextBox Text="" FontSize="20" Grid.Row="2" Grid.Column="1"/>
-        <TextBox Text="" FontSize="20" Grid.Row="3" Grid.Column="1"/>
-        <Button Content="Anmelden"  Grid.Row="4" Grid.ColumnSpan="2" />
+        <TextBox x:Name="TextBoxName" Text="" FontSize="20" Grid.Row="2" Grid.Column="1"/>
+        <TextBox x:Name="TextBoxPasswort" Text="" FontSize="20" Grid.Row="3" Grid.Column="1"/>
+        <Button x:Name="buttonA" Content="Anmelden"  Grid.Row="4" Grid.ColumnSpan="2" Click="buttonA_Click" />
 
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace OptikerService.Models
 {
@@ -8,8 +9,9 @@ namespace OptikerService.Models
     {
         public int kundenid { get; set; }
         public int modellid { get; set; }
-
+        [JsonIgnore]
         public virtual kunden kunden { get; set; }
+        [JsonIgnore]
         public virtual brillen modell { get; set; }
     }
 }

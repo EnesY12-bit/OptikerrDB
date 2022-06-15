@@ -25,6 +25,10 @@ namespace OptikerService.Models
             this.staerke = staerke;
             this.stueck = stueck;
         }
+        public brillen()
+        {
+
+        }
     }
 
 

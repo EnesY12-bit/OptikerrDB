@@ -109,10 +109,10 @@ namespace OptikerrDB
                 OBkunden.Add(newKunde);
                 kundenDG.Items.Refresh();
             }
-            
-            MessageBox.Show("Gesendet");
-
-            kundenDG.Items.Refresh();
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private async void DeleteKunde_Click(object sender, RoutedEventArgs e)
@@ -133,8 +133,36 @@ namespace OptikerrDB
             }
         }
 
-        private void UpdateKunde_Click(object sender, RoutedEventArgs e)
+        private async void UpdateKunde_Click(object sender, RoutedEventArgs e)
         {
+            kunden selectedKundeU = kundenDG.SelectedItem as kunden;
+            if (selectedKundeU == null)
+            {
+                return;
+            }
+            kunden editkunde = new kunden(selectedKundeU.kundenid, selectedKundeU.anrede, selectedKundeU.name, selectedKundeU.email, selectedKundeU.telefonnummer, selectedKundeU.adresse, selectedKundeU.kosten, selectedKundeU.bestellungsnummer, selectedKundeU.datum);
+
+           /* selectedKundeU.kundenid = editkunde.kundenid;
+            selectedKundeU.anrede = editkunde.anrede;
+            selectedKundeU.name = editkunde.name;
+            selectedKundeU.email = editkunde.email;
+            selectedKundeU.telefonnummer = editkunde.telefonnummer;
+            selectedKundeU.adresse = editkunde.adresse;
+            selectedKundeU.kosten = editkunde.kosten;
+            selectedKundeU.bestellungsnummer = editkunde.bestellungsnummer;
+            selectedKundeU.datum = editkunde.datum;
+            */
+
+            var patchkunde = await RestHelper.PatchKundenAsync(selectedKundeU.kundenid, editkunde);
+            if (patchkunde)
+            {
+                kundenDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+
 
         }
 
@@ -180,9 +208,57 @@ namespace OptikerrDB
             }
         }
 
-        private void UpdateBrillen_Click(object sender, RoutedEventArgs e)
+        private async void UpdateBrillen_Click(object sender, RoutedEventArgs e)
         {
+            brillen selectedBrillenU = brillenDG.SelectedItem as brillen;
+            
+            /*
+            MIDTB.Text = Convert.ToString(selectedBrillenU.modellid);
+            BNTB.Text = selectedBrillenU.name;
+            BATB.Text = selectedBrillenU.art;
+            BPTB.Text = Convert.ToString(selectedBrillenU.preis);
+            BGTB.Text = selectedBrillenU.glasart;
+            BSTB.Text = Convert.ToString(selectedBrillenU.staerke);
+            BSTUTB.Text = Convert.ToString(selectedBrillenU.stueck);
+            */
+            
 
+            if (selectedBrillenU == null)
+            {
+                return;
+            }
+           // brillen editbrillen = new brillen(selectedBrillenU.modellid, selectedBrillenU.name, selectedBrillenU.art, selectedBrillenU.preis, selectedBrillenU.glasart, selectedBrillenU.staerke, selectedBrillenU.stueck);
+
+
+            brillen editbrillen = new()
+            {
+                modellid = selectedBrillenU.modellid,
+                name = selectedBrillenU.name,
+                art = selectedBrillenU.art,
+                preis = selectedBrillenU.preis,
+                glasart = selectedBrillenU.glasart,
+                staerke = selectedBrillenU.staerke,
+                stueck = selectedBrillenU.stueck
+            };
+
+           /* selectedBrillenU.modellid = editbrillen.modellid;
+            selectedBrillenU.name = editbrillen.name;
+            selectedBrillenU.art = editbrillen.art;
+            selectedBrillenU.preis = editbrillen.preis;
+            selectedBrillenU.glasart = editbrillen.glasart;
+            selectedBrillenU.staerke = editbrillen.staerke;
+            selectedBrillenU.stueck = editbrillen.stueck;
+           */
+
+            var patchbrillen = await RestHelper.PatchBrillenAsync(selectedBrillenU.modellid, editbrillen);
+            if (patchbrillen)
+            {
+                brillenDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         //Mitarbeiter
@@ -190,8 +266,8 @@ namespace OptikerrDB
         private async void AddMitarbeiter_Click(object sender, RoutedEventArgs e)
         {
             mitarbeiter mitarbeiterAdd = new mitarbeiter(Convert.ToInt32(MPIDTB.Text),MATB.Text,MNTB.Text,
-                MAdresseTB.Text,Convert.ToDecimal(MSTB.Text),Convert.ToDecimal(MGTB.Text),MTTB.Text,
-                Convert.ToInt32(MGIDTB.Text), Convert.ToInt32(MKIDTB.Text));
+            MAdresseTB.Text,Convert.ToDecimal(MSTB.Text),Convert.ToDecimal(MGTB.Text),MTTB.Text,
+            Convert.ToInt32(MGIDTB.Text), Convert.ToInt32(MKIDTB.Text));
 
 
             var newmitarbeiter = await RestHelper.PostMitarbeiterAsync(mitarbeiterAdd.personalid, mitarbeiterAdd);
@@ -226,15 +302,43 @@ namespace OptikerrDB
             }
         }
 
-        private void UpdateMitarbeiter_Click(object sender, RoutedEventArgs e)
+        private async void UpdateMitarbeiter_Click(object sender, RoutedEventArgs e)
         {
+            mitarbeiter selectedMitarbeiterU = mitarbeiterDG.SelectedItem as mitarbeiter; 
+            if (selectedMitarbeiterU == null)
+            {
+                return;
+            }
+            mitarbeiter editmitarbeiter = new mitarbeiter(selectedMitarbeiterU.personalid, selectedMitarbeiterU.anrede, selectedMitarbeiterU.name, selectedMitarbeiterU.adress, selectedMitarbeiterU.sozialversicherung, selectedMitarbeiterU.gehalt, selectedMitarbeiterU.taetigkeit, selectedMitarbeiterU.geschaeftsid, selectedMitarbeiterU.kundenid);
 
+            var patchmitarbeiter = await RestHelper.PatchMitarbeiterAsync(selectedMitarbeiterU.personalid, editmitarbeiter);
+            if (patchmitarbeiter)
+            {
+                mitarbeiterDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         // Lieferer
-        private void AddLiefer_Click(object sender, RoutedEventArgs e)
+        private async void AddLiefer_Click(object sender, RoutedEventArgs e)
         {
+            lieferer liefererAdd = new lieferer(Convert.ToInt32(LIDTB.Text), LNTB.Text, LATB.Text, LETB.Text, Convert.ToDecimal(LTTB.Text));
 
+
+            var newlieferer = await RestHelper.PostLiefererAsync(liefererAdd.lieferid, liefererAdd);
+
+            if (newlieferer != null)
+            {
+                OBlieferer.Add(newlieferer);
+                liefererDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private async void DeleteLiefer_Click(object sender, RoutedEventArgs e)
@@ -251,19 +355,46 @@ namespace OptikerrDB
             }
             else
             {
+                MessageBox.Show("Error deleting lieferer");
+            }
+        }
+
+        private async void UpdateLiefer_Click(object sender, RoutedEventArgs e)
+        {
+            lieferer selectedLiefererU = liefererDG.SelectedItem as lieferer;
+            if (selectedLiefererU == null)
+            {
+                return;
+            }
+            lieferer editlieferer = new lieferer(selectedLiefererU.lieferid, selectedLiefererU.name, selectedLiefererU.adresse, selectedLiefererU.email, selectedLiefererU.telefonnummer);
+
+            var patchlieferer = await RestHelper.PatchLiefererAsync(selectedLiefererU.lieferid, editlieferer);
+            if (patchlieferer)
+            {
+                liefererDG.Items.Refresh();
+            }
+            else
+            {
                 MessageBox.Show("Error");
             }
         }
 
-        private void UpdateLiefer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         // Geschäft
-        private void AddGeschäft_Click(object sender, RoutedEventArgs e)
+        private async void AddGeschäft_Click(object sender, RoutedEventArgs e)
         {
+            geschaeft geschaeftAdd = new geschaeft(Convert.ToInt32(GIDTB.Text), GATB.Text, GNTB.Text, Convert.ToInt32(GPTB.Text));
 
+            var newgeschaeft = await RestHelper.PostGeschaeftAsync(geschaeftAdd.geschaeftsid, geschaeftAdd); 
+
+            if (newgeschaeft != null)
+            {
+                OBgeschaeft.Add(newgeschaeft);
+                geschaeftDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private async void DeleteGeschäft_Click(object sender, RoutedEventArgs e)
@@ -284,9 +415,41 @@ namespace OptikerrDB
             }
         }
 
-        private void UpdateGeschäft_Click(object sender, RoutedEventArgs e)
+        private async void UpdateGeschäft_Click(object sender, RoutedEventArgs e)
         {
+            geschaeft selectedGeschaeftU = geschaeftDG.SelectedItem as geschaeft;
+            if (selectedGeschaeftU == null)
+            {
+                return;
+            }
+            geschaeft editgeschaeft = new geschaeft(selectedGeschaeftU.geschaeftsid, selectedGeschaeftU.adresse, selectedGeschaeftU.name, selectedGeschaeftU.personalid);
 
+            var patchgeschaeft = await RestHelper.PatchGeschaeftAsync(selectedGeschaeftU.geschaeftsid, editgeschaeft);
+            if (patchgeschaeft)
+            {
+                geschaeftDG.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
+
+
+        //Test
+       /* private void TabBrille_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var window = new LoginWindow();
+            window.Owner = this;
+            if (window.ShowDialog() == true)
+            {
+                TabBrille.Focus();
+            }
+            else
+            {
+                TabKunde.Focus();
+            }
+        }
+       */
     }
 }

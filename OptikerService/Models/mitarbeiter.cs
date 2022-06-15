@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace OptikerService.Models
 {
@@ -22,6 +23,7 @@ namespace OptikerService.Models
         public int geschaeftsid { get; set; }
         public int? kundenid { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<geschaeft> geschaeft { get; set; }
 
 

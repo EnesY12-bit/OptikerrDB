@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using OptikerDBLibary;
 using OptikerService.Models;
+using System.Windows;
 
 namespace OptikerrDB
 {
@@ -25,7 +26,7 @@ namespace OptikerrDB
         static string baseUrl = $"{baseUri.AbsoluteUri}";
 
         //GET Kunden
-        public static async Task<List<kunden>?> GetallkundenAsync()
+        public static async Task<List<kunden>> GetallkundenAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/kundens/");
             if (!response.IsSuccessStatusCode)
@@ -41,7 +42,7 @@ namespace OptikerrDB
         }
 
         //GET Brillen
-        public static async Task<List<brillen>?> GetallbrillenAsync()
+        public static async Task<List<brillen>> GetallbrillenAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/brillens/");
             if (!response.IsSuccessStatusCode)
@@ -56,7 +57,7 @@ namespace OptikerrDB
 
         //GET Mitarbeiter
 
-        public static async Task<List<mitarbeiter>?> GetallmitarbeiterAsync()
+        public static async Task<List<mitarbeiter>> GetallmitarbeiterAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/mitarbeiters/");
             if (!response.IsSuccessStatusCode)
@@ -70,7 +71,7 @@ namespace OptikerrDB
         }
 
         //Get Lieferer
-        public static async Task<List<lieferer>?> GetallliefererAsync()
+        public static async Task<List<lieferer>> GetallliefererAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/lieferers/");
             if (!response.IsSuccessStatusCode)
@@ -84,7 +85,7 @@ namespace OptikerrDB
         }
 
         //Get Geschäft
-        public static async Task<List<geschaeft>?> GetallgeschaeftAsync()
+        public static async Task<List<geschaeft>> GetallgeschaeftAsync()
         {
             HttpResponseMessage response = await client.GetAsync(baseUri + "api/geschaefts/");
             if (!response.IsSuccessStatusCode)
@@ -104,7 +105,7 @@ namespace OptikerrDB
             string json = JsonSerializer.Serialize(kunden);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var request = await client.PostAsync($"{baseUri}/api/kundens/{KID}/kundens", content);
+            var request = await client.PostAsync($"{baseUri}/api/kundens/", content);
             if (!request.IsSuccessStatusCode)
             {
                 //thow new InvalidOperationExceptions();
@@ -117,10 +118,11 @@ namespace OptikerrDB
         //Post Brillen
         public static async Task<brillen> PostBrillensAsync(int MID, brillen brillen)
         {
+            brillen.modellid = MID;
             string json = JsonSerializer.Serialize(brillen);
             StringContent content = new StringContent(json, Encoding.UTF8 , "application/json");
 
-            var reqeust = await client.PostAsync($"{baseUri}/api/brillens/{MID}/brillens", content);
+            var reqeust = await client.PostAsync($"{baseUri}/api/brillens/", content);
             if (!reqeust.IsSuccessStatusCode)
             {
                 //thow new InvaildOpertaionExceptions();
@@ -147,10 +149,11 @@ namespace OptikerrDB
         //Post Lieferer
         public static async Task<lieferer> PostLiefererAsync(int LID, lieferer lieferer)
         {
+            lieferer.lieferid = LID;
             string json = JsonSerializer.Serialize(lieferer);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var request = await client.PostAsync($"{baseUri}/api/lieferers/{LID}/lieferers", content);
+            var request = await client.PostAsync(baseUri + "api/lieferers/", content);
             if (!request.IsSuccessStatusCode)
             {
                 //thow new InvaildOperationExceptions();
@@ -165,7 +168,7 @@ namespace OptikerrDB
             string json = JsonSerializer.Serialize(geschaeft);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var request = await client.PostAsync($"{baseUri}/api/geschaefts/{GID}/geschaefts", content);
+            var request = await client.PostAsync($"{baseUri}/api/geschaefts/", content);
             if (!request.IsSuccessStatusCode)
             {
                 //thow new InvaildOperationExceptions();
@@ -178,7 +181,7 @@ namespace OptikerrDB
         //Delete Kunden
         public static async Task<bool> DeleteKundenAsync(int dKID)
         {
-            var request = await client.DeleteAsync($"{baseUri}/api/kundens/{dKID}");
+            var request = await client.DeleteAsync(baseUri + "/api/kundens/" + dKID);
 
             if (!request.IsSuccessStatusCode)
             {
@@ -189,7 +192,7 @@ namespace OptikerrDB
         //Delete Brillen
         public static async Task<bool> DeleteBrillenAsync(int dMID)
         {
-            var request = await client.DeleteAsync($"{baseUri}/api/brillen/{dMID}");
+            var request = await client.DeleteAsync(baseUri+ "/api/brillen/" + dMID);
 
             if (!request.IsSuccessStatusCode)
             {
@@ -200,7 +203,7 @@ namespace OptikerrDB
         //Delete Mitarbeiter
         public static async Task<bool> DeleteMitarbeiterAsync(int dPID)
         {
-            var request = await client.DeleteAsync($"{baseUri}/api/mitarbeiters/{dPID}");
+            var request = await client.DeleteAsync(baseUri + "/api/mitarbeiters/" + dPID);
 
             if (!request.IsSuccessStatusCode)
             {
@@ -211,7 +214,9 @@ namespace OptikerrDB
         //Delete Lieferer
         public static async Task<bool> DeleteLiefererAsync(int dLID)
         {
-            var request = await client.DeleteAsync($"{baseUri}/api/lieferers/{dLID}");
+            var request = await client.DeleteAsync(baseUri + "api/lieferers/" + dLID);
+
+            MessageBox.Show(Convert.ToString(baseUri + "api/lieferers/" + dLID));
 
             if (!request.IsSuccessStatusCode)
             {
